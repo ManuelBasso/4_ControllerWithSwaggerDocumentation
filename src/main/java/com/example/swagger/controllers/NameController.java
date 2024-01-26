@@ -1,6 +1,7 @@
 package com.example.swagger.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -17,7 +18,7 @@ public class NameController {
             @ApiResponse(responseCode = "404", description = "name not found", content = @Content),
     })
     @GetMapping(path = "/getName")
-    public String getName(@RequestParam String name) {
+    public String getName(@Parameter(description = "name you want to get") @RequestParam String name) {
         return name;
     }
 
@@ -29,7 +30,7 @@ public class NameController {
             @ApiResponse(responseCode = "404", description = "name not found", content = @Content),
     })
     @PostMapping(path = "/postName/{name}")
-    public String postName(@PathVariable String name) {
+    public String postName(@Parameter(description = "Name you want to reverse")@PathVariable String name) {
         StringBuilder str = new StringBuilder(name);
         return str.reverse().toString();
     }
